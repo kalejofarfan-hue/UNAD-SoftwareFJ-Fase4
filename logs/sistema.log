@@ -1,0 +1,36 @@
+2026-11-21 20:15:10 | INFO     | === INICIO DE SIMULACIÓN: SISTEMA INTEGRAL SOFTWARE FJ ===
+2026-11-21 20:15:10 | INFO     | --- Operación 1: Registro válido de Cliente 1 ---
+2026-11-21 20:15:10 | INFO     | Cliente registrado exitosamente -> Cliente [CLI-001] Laura Martínez | Doc: 1023456789 | Correo: laura.martinez@empresa.com
+2026-11-21 20:15:10 | INFO     | --- Operación 2: Registro válido de Cliente 2 ---
+2026-11-21 20:15:10 | INFO     | Cliente registrado exitosamente -> Cliente [CLI-002] Carlos Gómez | Doc: 1098765432 | Correo: carlos.gomez@tech.co
+2026-11-21 20:15:10 | INFO     | --- Operación 3: Registro inválido de Cliente (correo incorrecto) ---
+2026-11-21 20:15:10 | ERROR    | Excepción controlada en Operación 3 (DatoInvalidoError): El correo electrónico 'correo_sin_arroba.com' no tiene un formato válido.
+2026-11-21 20:15:10 | DEBUG    | Operación 3 verificada: el sistema continúa en ejecución.
+2026-11-21 20:15:10 | INFO     | --- Operación 4: Registro inválido de Cliente (documento duplicado) ---
+2026-11-21 20:15:10 | ERROR    | Excepción controlada en Operación 4 (OperacionNoPermitidaError): Ya existe un cliente registrado con el documento 1023456789.
+2026-11-21 20:15:10 | INFO     | --- Operación 5: Creación válida de servicios especializados ---
+2026-11-21 20:15:10 | INFO     | Servicio registrado exitosamente -> ReservaSala [SRV-001] Sala Innovación A | Capacidad: 25 personas | Tarifa: $80,000/h | Disponible
+2026-11-21 20:15:10 | INFO     | Servicio registrado exitosamente -> AlquilerEquipo [SRV-002] Proyector 4K Epson | Depósito: $50,000 | Tarifa: $45,000/h | Disponible
+2026-11-21 20:15:10 | INFO     | Servicio registrado exitosamente -> AsesoriaEspecializada [SRV-003] Consultoría Cloud | Área: Arquitectura AWS | Tarifa: $150,000/h | Disponible
+2026-11-21 20:15:10 | INFO     | --- Operación 6: Creación inválida de Servicio (tarifa negativa) ---
+2026-11-21 20:15:10 | ERROR    | Excepción controlada en Operación 6 (DatoInvalidoError): La tarifa por hora debe ser un número positivo mayor que cero.
+2026-11-21 20:15:10 | INFO     | --- Operación 7: Creación inválida de Servicio (especialidad vacía) ---
+2026-11-21 20:15:10 | ERROR    | Excepción controlada en Operación 7 (ParametroFaltanteError): Debe especificar el área de especialidad de la asesoría.
+2026-11-21 20:15:10 | INFO     | --- Operación 8: Reserva exitosa de Sala (con descuento e IVA) ---
+2026-11-21 20:15:10 | INFO     | Reserva confirmada exitosamente -> Reserva [RES-001] | Estado: CONFIRMADA | Cliente: Laura Martínez | Servicio: Sala Innovación A | Duración: 4h | Total: $376,992.00
+2026-11-21 20:15:10 | DEBUG    | Finalizó intento de transacción para la reserva [RES-001].
+2026-11-21 20:15:10 | INFO     | --- Operación 9: Reserva fallida (servicio no disponible) ---
+2026-11-21 20:15:10 | ERROR    | Error al gestionar reserva [RES-002]: ServicioNoDisponibleError - El servicio 'Sala Innovación A' no se encuentra disponible actualmente.
+2026-11-21 20:15:10 | DEBUG    | Finalizó intento de transacción para la reserva [RES-002].
+2026-11-21 20:15:10 | INFO     | --- Operación 10: Reserva fallida con encadenamiento (descuento > 50%) ---
+2026-11-21 20:15:10 | ERROR    | Error al gestionar reserva [RES-003]: ReservaInvalidaError - No fue posible procesar la reserva RES-003: fallo en validación o cálculo. | Causa original: Descuento inválido (0.8). Debe estar entre 0.0 (0%) y 0.5 (50%).
+2026-11-21 20:15:10 | DEBUG    | Finalizó intento de transacción para la reserva [RES-003].
+2026-11-21 20:15:10 | INFO     | --- Operación 11: Reserva exitosa de Asesoría (sin IVA) ---
+2026-11-21 20:15:10 | INFO     | Reserva confirmada exitosamente -> Reserva [RES-004] | Estado: CONFIRMADA | Cliente: Carlos Gómez | Servicio: Consultoría Cloud | Duración: 3h | Total: $450,000.00
+2026-11-21 20:15:10 | DEBUG    | Finalizó intento de transacción para la reserva [RES-004].
+2026-11-21 20:15:10 | INFO     | --- Operación 12: Cancelación de reserva y control de doble cancelación ---
+2026-11-21 20:15:10 | INFO     | Reserva cancelada exitosamente -> Reserva [RES-001] | Estado: CANCELADA | Cliente: Laura Martínez | Servicio: Sala Innovación A | Duración: 4h | Total: $376,992.00
+2026-11-21 20:15:10 | DEBUG    | Auditoría de cancelación completada para [RES-001].
+2026-11-21 20:15:10 | ERROR    | Error al cancelar reserva [RES-001]: La reserva RES-001 ya estaba cancelada.
+2026-11-21 20:15:10 | DEBUG    | Auditoría de cancelación completada para [RES-001].
+2026-11-21 20:15:10 | INFO     | === FIN DE SIMULACIÓN | Resumen Software FJ -> Clientes: 2 | Servicios: 3 | Reservas registradas: 2 ===
